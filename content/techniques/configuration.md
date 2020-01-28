@@ -81,10 +81,10 @@ A custom configuration file exports a factory function that returns a configurat
 ```typescript
 @@filename(config/configuration)
 export default () => ({
-  port: parseInt(process.env.PORT, 10) || 3000,
+  port: parseInt(process.env.PORT, 10) ?? 3000,
   database: {
     host: process.env.DATABASE_HOST,
-    port: parseInt(process.env.DATABASE_PORT, 10) || 5432
+    port: parseInt(process.env.DATABASE_PORT, 10) ?? 5432
   }
 });
 ```
@@ -149,7 +149,8 @@ The `ConfigModule` allows you to define and load multiple custom configuration f
 @@filename(config/database.config)
 export default registerAs('database', () => ({
   host: process.env.DATABASE_HOST,
-  port: process.env.DATABASE_PORT || 5432
+  port: process.env.DATABASE_PORT ??
+  5432
 }));
 ```
 
